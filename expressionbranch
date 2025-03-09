@@ -1,4 +1,4 @@
-// any one condition matches then that stage will execute
+// all condition matches then that stage will execute
 
 pipeline{
     agent{
@@ -15,7 +15,7 @@ pipeline{
         }
         stage('prod'){
             when{
-                anyOf{
+                allOf{
                     environment name: 'Deploy', value: 'prod'
                     expression {BRANCH_NAME == 'prod'} 
                 }
