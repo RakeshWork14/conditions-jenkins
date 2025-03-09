@@ -5,7 +5,7 @@ pipeline{
         label 'java-slave'
     }
     environment{
-        Deploy = "dev"
+        Deploy = "prod"
     }
     stages{
         stage('dev'){
