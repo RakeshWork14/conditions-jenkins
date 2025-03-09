@@ -1,4 +1,4 @@
-// when conditon execute based on their branches
+// when conditon executr based on their branches
 // This condition "Branch_Name" will execute only in MultiBranch Pipeline
 
 pipeline{
@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('dev'){
             when{
-                expression {BRANCH_NAME ==~ /dev}
+                expression {BRANCH_NAME == 'dev'}
             }
             steps{
                 echo "dev deployment"
@@ -16,7 +16,8 @@ pipeline{
         }
         stage('stage'){
             when{
-                expression {BRANCH_NAME ==~ /release}
+                expression { BRANCH_NAME == 'release' }
+
         }
         steps{
             echo "stage deployment"
@@ -24,7 +25,7 @@ pipeline{
         }
         stage('prod'){
             when{
-                expression {BRANCH_NAME ==~ /prod}
+                expression {BRANCH_NAME == 'prod'}
             }
             steps{
                 echo "prod deployment"
