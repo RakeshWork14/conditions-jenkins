@@ -1,36 +1,25 @@
-// when conditon executr based on their branches
-// This condition "Branch_Name" will execute only in MultiBranch Pipeline
+// any one condition matches then that stage will execute
 
 pipeline{
     agent{
-        label 'java-label'
+        label 'java-slave'
+    }
+    environment{
+        Deploy = "prod"
     }
     stages{
         stage('dev'){
-            when{
-                expression {BRANCH_NAME == 'dev'}
-            }
             steps{
-                echo "dev deployment"
+                echo "dev deloyment"
             }
-        }
-        stage('stage'){
-            when{
-                expression { BRANCH_NAME == 'release' }
-
-        }
-        steps{
-            echo "stage deployment"
-        }
         }
         stage('prod'){
             when{
-                expression {BRANCH_NAME == 'prod'}
-            }
-            steps{
-                echo "prod deployment"
+                anyOf{
+                    environment name: 'Deploy', value: 'prod'
+                    expression {BRANCH_NAME == 'prod'} 
+                }
             }
         }
-
     }
 }
