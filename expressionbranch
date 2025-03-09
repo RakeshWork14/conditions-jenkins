@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('dev'){
             when{
-                expression {BRANCH_NAME ==~ /dev}
+                expression {BRANCH_NAME == 'dev'}
             }
             steps{
                 echo "dev deployment"
@@ -25,7 +25,7 @@ pipeline{
         }
         stage('prod'){
             when{
-                expression {BRANCH_NAME ==~ /prod}
+                expression {BRANCH_NAME == 'prod'}
             }
             steps{
                 echo "prod deployment"
