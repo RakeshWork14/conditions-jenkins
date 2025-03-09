@@ -5,7 +5,7 @@ pipeline{
         label 'java-slave'
     }
     environment{
-        Deploy = "prod"
+        Deploy = "dev"
     }
     stages{
         stage('dev'){
@@ -19,6 +19,9 @@ pipeline{
                     environment name: 'Deploy', value: 'prod'
                     expression {BRANCH_NAME == 'prod'} 
                 }
+            }
+            steps{
+                echo "prod deployment"
             }
         }
     }
